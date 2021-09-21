@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <variable
+            name="country"
+            type="com.example.testapp.domain.CountriesModel" />
+
+
+        <variable
+            name="clickListener"
+            type="com.example.testapp.adapters.CountryClickListener" />
+    </data>
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@{country.name}"
+        />
+</LinearLayout>
+
+</layout>
