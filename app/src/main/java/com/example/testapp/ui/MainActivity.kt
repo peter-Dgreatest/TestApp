@@ -1,17 +1,23 @@
 package com.example.testapp.ui
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import com.example.msalehstoreapp.network.helpers.Resource
+import com.example.msalehstoreapp.network.helpers.Resource.*
 import com.example.testapp.R
 import com.example.testapp.adapters.CountriesAdapter
 import com.example.testapp.adapters.CountryClickListener
 import com.example.testapp.databinding.ActivityMainBinding
 import com.google.android.material.chip.Chip
 import kotlinx.android.synthetic.main.activity_main.view.*
+import com.example.testapp.util.visible
 
 
 class MainActivity : AppCompatActivity() {
@@ -49,8 +55,19 @@ class MainActivity : AppCompatActivity() {
         })
 
         countryViewModel.countries.observe(this, Observer {
-            it?.apply {
-                countryAdapter.submitList(it)
+            Log.e("ffff",it.toString())
+            binding.progressbar.visible(it is Resource.Loading)
+            when (it) {
+                is Success -> {
+                    it?.apply {
+                        countryAdapter.submitList(it.value)
+                    }
+                }
+                is Resource.Failure -> Toast.makeText(
+                    applicationContext,
+                    "Error Occured",
+                    Toast.LENGTH_LONG
+                ).show()
             }
         })
 

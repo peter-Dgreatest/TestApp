@@ -3,6 +3,7 @@ package com.example.testapp.ui
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
+import com.example.msalehstoreapp.network.helpers.Resource
 import com.example.testapp.domain.CountriesModel
 import com.example.testapp.repository.NameRepository
 import kotlinx.coroutines.CoroutineScope
@@ -21,7 +22,7 @@ class MainActivityViewModel(application: Application) : AndroidViewModel(applica
 
 
 
-    var countries  = MutableLiveData<List<CountriesModel>>()
+    var countries  = MutableLiveData<Resource<List<CountriesModel>>>()
 
     private val viewModelScope = CoroutineScope(viewModelJob + Dispatchers.Main)
 
