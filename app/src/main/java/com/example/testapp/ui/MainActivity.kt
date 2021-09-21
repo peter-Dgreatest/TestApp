@@ -55,7 +55,7 @@ class MainActivity : AppCompatActivity() {
         })
 
         countryViewModel.countries.observe(this, Observer {
-            Log.e("ffff",it.toString())
+            Log.e("fxxxxfff",it.toString())
             binding.progressbar.visible(it is Resource.Loading)
             when (it) {
                 is Success -> {

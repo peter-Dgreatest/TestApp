@@ -28,6 +28,7 @@ class MainActivityViewModel(application: Application) : AndroidViewModel(applica
 
     fun getNames(queryString :String){
         viewModelScope.launch {
+            countries.value = Resource.Loading
             countries.value = nameRepository.getNames(queryString)
         }
     }

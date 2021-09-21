@@ -5,7 +5,7 @@ import com.squareup.moshi.JsonClass
 
 data class CountriesModel(
     val name : String,
-    val region : String
+    val phonecode : String
 )
 
 @JsonClass(generateAdapter = true)
@@ -18,12 +18,11 @@ data class NetworkCountriesContainer(val countries: List<NetworkCountries>)
 @JsonClass(generateAdapter = true)
 data class NetworkCountries(
     val name: String,
-    @field:Json(name = "region")
-    val region : String)
+    val phonecode : String)
 
 fun NetworkCountriesContainer.asDomainModel(): List<CountriesModel> {
     return countries.map {
         CountriesModel ( name = it.name,
-            region = it.region)
+            phonecode = it.phonecode)
     }.toList()
 }
